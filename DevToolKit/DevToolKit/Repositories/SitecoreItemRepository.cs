@@ -39,7 +39,7 @@ namespace DevToolKit.Repositories
             {
                 itemId = "233",
                 Id = "233",
-                Fields = fields.AsQueryable()
+                Fields = fields
             };
 
             return sItem;
