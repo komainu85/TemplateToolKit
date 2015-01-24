@@ -62,6 +62,9 @@
   <ItemGroup>
     <Content Include="StandardValuesTool.js" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Client\Asserts\StandardValuesTool\Tiles\FieldTile.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
