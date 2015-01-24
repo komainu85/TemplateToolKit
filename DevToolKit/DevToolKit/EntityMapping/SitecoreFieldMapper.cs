@@ -18,11 +18,12 @@ namespace DevToolKit.EntityMapping
         {
             Assert.IsNotNull(field, "field can not be null");
 
-            Template template = TemplateManager.GetTemplate(
+            var baseTemplate = TemplateManager.GetTemplate(
                     Sitecore.Configuration.Settings.DefaultBaseTemplate,
                     field.Database);
+            Assert.IsNotNull(baseTemplate, "template");
 
-            Assert.IsNotNull(template, "template");
+            var template = field.GetTemplateField().Template;
 
             var entity = new SitecoreField
             {
@@ -30,11 +31,11 @@ namespace DevToolKit.EntityMapping
                 Name = field.Name,
                 Value = field.Value,
                 StandardValue = field.GetStandardValue(),
-                TemplateName = field.GetTemplateField().Template.Name,
-                TemplateId = field.GetTemplateField().Template.ID.ToString(),
-                StandardField = template.ContainsField(field.ID),
+                TemplateName = template.Name,
+                TemplateId = template.ID.ToString(),
+                StandardField = baseTemplate.ContainsField(field.ID),
                 SortOrder = field.Sortorder,
-                SectionSortOrder = field.SectionSortorder
+                SectionSortOrder = field.SectionSortorder,
             };
 
             return entity;
