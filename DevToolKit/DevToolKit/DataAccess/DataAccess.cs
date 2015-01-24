@@ -33,18 +33,18 @@ namespace DevToolKit.DataAccess
         {
             Assert.IsNotNull(sItem, "SitecoteItem can not be null");
 
-            Item item = Sitecore.Context.Database.GetItem(sItem.Id);
+            Item item = GetItem(sItem.Id);
             Assert.IsNotNull(item, "Item can not be null");
 
             bool success = false;
+
+            var fieldsToRevert = sItem.Fields.Where(x => x.RevertToStandardValue);
 
             using (new Sitecore.SecurityModel.SecurityDisabler())
             {
                 try
                 {
                     item.Editing.BeginEdit();
-
-                    var fieldsToRevert = sItem.Fields.Where(x => x.RevertToStandardValue);
 
                     foreach (var sField in fieldsToRevert)
                     {
@@ -61,15 +61,16 @@ namespace DevToolKit.DataAccess
                         field.Value = field.GetStandardValue();
                     }
 
-                    item.Editing.EndEdit();
-
                     success = true;
                 }
                 catch (Exception ex)
                 {
-                    item.Editing.EndEdit();
                     Log.Error(ex.Message, ex, this);
-                    success = false;
+                    throw ex;
+                }
+                finally
+                {
+                    item.Editing.EndEdit();
                 }
             }
 
