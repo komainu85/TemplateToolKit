@@ -19,7 +19,7 @@ define(["sitecore", "jquery", "underscore", "entityService"], function (Sitecore
             var datasource = this.DataSource;
 
             var fieldService = new entityService({
-                url: "/sitecore/api/ssc/DevToolKit-Controllers/SitecoreField"
+                url: "/sitecore/api/ssc/DevToolKit-Controllers/SitecoreItem"
             });
 
             var result = fieldService.fetchEntity("123").execute().then(function (item) {
