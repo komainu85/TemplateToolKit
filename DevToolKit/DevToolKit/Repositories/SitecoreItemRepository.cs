@@ -14,6 +14,7 @@ namespace DevToolKit.Repositories
     public class SitecoreItemRepository : Sitecore.Services.Core.IRepository<SitecoreItem>
     {
         private IDataAccess _dataAccess = new DataAccess.DataAccess();
+        private ISitecoreItemMapper _sitecoreItemMapper = new SitecoreItemMapper();
 
         public void Add(SitecoreItem entity)
         {

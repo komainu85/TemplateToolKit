@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DevToolKit.Interfaces;
 using DevToolKit.Models;
 using Sitecore.Data.Fields;
 using Sitecore.Data.Items;
@@ -11,7 +12,7 @@ using Sitecore.Diagnostics;
 
 namespace DevToolKit.EntityMapping
 {
-    public class SitecoreFieldMapper
+    public class SitecoreFieldMapper : ISitecoreFieldMapper
     {
         public SitecoreField MapToEntity(Field field)
         {
