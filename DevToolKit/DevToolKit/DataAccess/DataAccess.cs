@@ -13,6 +13,20 @@ namespace DevToolKit.DataAccess
 {
     public class DataAccess : IDataAccess
     {
+        private Database _masterDatabase;
+        private Database MasterDatabase
+        {
+            get
+            {
+                if (_masterDatabase == null)
+                {
+                    _masterDatabase = Sitecore.Data.Database.GetDatabase("master");
+                }
+
+                return _masterDatabase;
+            }
+        }
+
         public Item GetItem(string id)
         {
             Assert.IsNotNullOrEmpty(id, "Id can not be null");
@@ -22,7 +36,7 @@ namespace DevToolKit.DataAccess
             ID sId = ID.Null;
             if (ID.TryParse(id, out sId))
             {
-                item = Sitecore.Context.Database.GetItem(sId);
+                item = MasterDatabase.GetItem(sId);
             }
             else
             {

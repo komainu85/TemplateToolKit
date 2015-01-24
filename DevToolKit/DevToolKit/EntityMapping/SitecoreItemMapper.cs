@@ -18,6 +18,8 @@ namespace DevToolKit.EntityMapping
         {
             Assert.IsNotNull(item, "item can not be null");
 
+            item.Fields.ReadAll();
+
             var entity = new SitecoreItem
             {
                 Id = item.ID.ToString(),
@@ -26,10 +28,12 @@ namespace DevToolKit.EntityMapping
                 Fields = item.Fields.Select(_sitecoreFieldMapper.MapToEntity).ToList(),
             };
 
-            if (includeStandardFields)
+            if (!includeStandardFields)
             {
                 entity.Fields.RemoveAll(x => x.StandardField);
             }
+
+            entity.Fields = entity.Fields.OrderBy(f => f.SectionSortOrder).ThenBy(f => f.SortOrder).ToList();
 
             return entity;
         }

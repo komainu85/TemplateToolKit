@@ -40,8 +40,7 @@ namespace DevToolKit.Repositories
             Item item = _dataAccess.GetItem(id);
             if (item == null) return new SitecoreItem();
 
-            var sitecoreItemMaper = new SitecoreItemMapper();
-            var sItem = sitecoreItemMaper.MapToEntity(item);
+            var sItem = _sitecoreItemMapper.MapToEntity(item);
 
             return sItem;
         }

@@ -33,6 +33,8 @@ namespace DevToolKit.EntityMapping
                 TemplateName = field.GetTemplateField().Template.Name,
                 TemplateId = field.GetTemplateField().Template.ID.ToString(),
                 StandardField = template.ContainsField(field.ID),
+                SortOrder = field.Sortorder,
+                SectionSortOrder = field.SectionSortorder
             };
 
             return entity;
