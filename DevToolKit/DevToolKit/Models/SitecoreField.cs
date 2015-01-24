@@ -5,9 +5,8 @@ using System.Web;
 
 namespace DevToolKit.Models
 {
-    public class SitecoreField : Sitecore.Services.Core.Model.EntityIdentity
+    public class SitecoreField
     {
-        public string itemId { get; set; }
         public string Name { get; set; }
         public string Value { get; set; }
         public string StandardValue { get; set; }

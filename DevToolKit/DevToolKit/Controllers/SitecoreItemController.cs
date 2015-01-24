@@ -12,15 +12,15 @@ namespace DevToolKit.Controllers
 {
     [ValidateAntiForgeryToken]
     [ServicesController]
-    public class SitecoreFieldController : EntityService<SitecoreField>
+    public class SitecoreItemController : EntityService<SitecoreField>
     {
-        public SitecoreFieldController(IRepository<SitecoreField> repository)
+        public SitecoreItemController(IRepository<SitecoreItem> repository)
             : base(repository)
         {
         }
 
-        public SitecoreFieldController()
-            : this(new SitecoreFieldRepository())
+        public SitecoreItemController()
+            : this(new SitecoreItemRepository())
         {
         }
     }

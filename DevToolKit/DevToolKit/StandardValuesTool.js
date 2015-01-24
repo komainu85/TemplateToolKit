@@ -22,7 +22,7 @@ define(["sitecore", "jquery", "underscore", "entityService"], function (Sitecore
                 url: "/sitecore/api/ssc/DevToolKit-Controllers/SitecoreField"
             });
 
-            var result = fieldService.fetchEntities().execute().then(function (fields) {
+            var result = fieldService.fetchEntity("123").execute().then(function (fields) {
                 datasource.viewModel.items(field);
             });
 
