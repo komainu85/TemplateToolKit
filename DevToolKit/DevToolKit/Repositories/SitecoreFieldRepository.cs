@@ -35,7 +35,7 @@ namespace DevToolKit.Repositories
             items.Add(new SitecoreField() {Id= "dgsds",itemId="fdfgfdg", Name="sdfdsfsdf", StandardValue="dsfdf", Value="dsfdsf"  });
             items.Add(new SitecoreField() { Id = "dgsfffds", itemId = "fsdfdsdfgfdg", Name = "sdfdssdfsdf", StandardValue = "dsdfdfdf", Value = "dsfdsddf" });
 
-            return items.AsQueryable<SitecoreField>;
+            return items.AsQueryable();
         }
 
         public void Update(SitecoreField entity)
