@@ -42,8 +42,7 @@ define(["sitecore", "jquery", "underscore", "entityService", ], function (Siteco
             return vars;
         },
 
-        UpdateItem: function ()
-        {
+        UpdateItem: function () {
             var itemService = new entityService({
                 url: "/sitecore/api/ssc/DevToolKit-Controllers/SitecoreItem"
             });
@@ -52,14 +51,32 @@ define(["sitecore", "jquery", "underscore", "entityService", ], function (Siteco
             var itemid = querystring["itemid"];
 
             var message = this.messagePanel;
+            var fieldsToReset = this.GetItemsToReset();
 
             var result = itemService.fetchEntity(itemid).execute().then(function (item) {
+
+                for (var i = 0; i < item.Fields.underlying.length; i++) {
+                    var field = item.Fields.underlying[i];
+
+                    if ($.inArray(field.Name, fieldsToReset) != -1) {
+                        field.RevertToStandardValue = true;
+                    }
+                }
+
                 item.save().then(function (savedItem) {
                     message.addMessage("notification", { text: "Item updated successfully", actions: [], closable: true, temporary: true });
                 });
             });
-            }
-        
+        },
+
+        GetItemsToReset: function () {
+            var checkedValues = $('input:checkbox:checked').map(function () {
+                return this.value;
+            }).get();
+
+            return checkedValues;
+        }
+
     });
 
     return StandardValuesTool;
