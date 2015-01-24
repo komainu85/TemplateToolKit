@@ -65,12 +65,12 @@ define(["sitecore", "jquery", "underscore", "entityService", ], function (Siteco
 
                 item.save().then(function (savedItem) {
                     message.addMessage("notification", { text: "Item updated successfully", actions: [], closable: true, temporary: true });
-                });
+                }).done(this.GetFields());
             });
         },
 
         GetItemsToReset: function () {
-            var checkedValues = $("input[value='Reset Field']").map(function () {
+            var checkedValues = $("input[value='On']").map(function () {
                 return this.name;
             }).get();
 

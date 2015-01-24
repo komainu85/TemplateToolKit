@@ -107,9 +107,7 @@ namespace DevToolKit.DataAccess
 
                     foreach (var sField in fieldsToRevert)
                     {
-                        var field =
-                            item.Fields.FirstOrDefault(
-                                x => x.ID.ToString().Trim().ToLower() == sField.Id.Trim().ToLower());
+                        var field = item.Fields.FirstOrDefault(x => x.ID.ToString().Trim().ToLower() == sField.Id.Trim().ToLower());
 
                         if (field == null)
                         {
@@ -118,6 +116,13 @@ namespace DevToolKit.DataAccess
                         }
 
                         field.Value = field.GetStandardValue();
+
+                        if (field.Value.Contains("$"))
+                        {
+                            Sitecore.Data.MasterVariablesReplacer replacer = Sitecore.Configuration.Factory.GetMasterVariablesReplacer();
+                            Sitecore.Diagnostics.Assert.IsNotNull(replacer, "replacer");
+                            replacer.ReplaceItem(item);
+                        }
                     }
 
                     success = true;
