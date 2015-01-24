@@ -1,6 +1,7 @@
 ﻿<div>
-    <label data-bind="attr: { 'for': Name }">Reset</label>
-    <input type="checkbox" data-bind="value: Name, attr: { name: Name }" />
+
+    <input data-bind="attr: { name: Name }" type="button" value="Ignore Field" onclick="if (value == 'Reset Field') { value = 'Ignore Field' } else { value ='Reset Field'};"/>
+
     <div class="sc-tile-default-property">
         <strong class="sc-tile-property-title">Name: </strong>
         <span class="sc-tile-property-value" data-bind="text: Name"></span>
