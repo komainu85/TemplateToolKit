@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DevToolKit.Interfaces;
 using DevToolKit.Models;
 using Sitecore.Data;
 using Sitecore.Data.Items;
+using Sitecore.Data.Managers;
 using Sitecore.Diagnostics;
+using Sitecore.Links;
 
 namespace DevToolKit.DataAccess
 {
@@ -36,6 +39,48 @@ namespace DevToolKit.DataAccess
             Item item = GetItem(sItem.Id);
             Assert.IsNotNull(item, "Item can not be null");
 
+            bool success = false;
+
+            bool isTemplate = TemplateManager.IsTemplate(item);
+
+            if (isTemplate)
+            {
+                success = UpdateReferers(sItem);
+            }
+            else
+            {
+                success = ComputeUpdate(item, sItem);
+            }
+
+            return success;
+        }
+
+        public bool UpdateReferers(SitecoreItem sItem)
+        {
+            Assert.IsNotNull(sItem, "SitecoteItem can not be null");
+
+            Item item = GetItem(sItem.Id);
+            Assert.IsNotNull(item, "Item can not be null");
+
+            return UpdateReferers(item, sItem);
+        }
+
+        private bool UpdateReferers(Item item, SitecoreItem sItem)
+        {
+            bool success = false;
+
+            var refererItems = new List<Item>();
+
+            foreach (var i in refererItems)
+            {
+                success = ComputeUpdate(i, sItem);
+            }
+
+            return success;
+        }
+
+        private bool ComputeUpdate(Item item, SitecoreItem sItem)
+        {
             bool success = false;
 
             var fieldsToRevert = sItem.Fields.Where(x => x.RevertToStandardValue);
