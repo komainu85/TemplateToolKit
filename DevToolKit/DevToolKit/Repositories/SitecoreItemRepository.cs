@@ -26,7 +26,9 @@ namespace DevToolKit.Repositories
 
         public bool Exists(SitecoreItem entity)
         {
-            return true;
+            Assert.IsNotNull(entity, "entity is required");
+
+            return (_dataAccess.GetItem(entity.Id) != null);
         }
 
         public SitecoreItem FindById(string id)
