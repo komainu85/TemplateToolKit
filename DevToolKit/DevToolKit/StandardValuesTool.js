@@ -40,9 +40,26 @@ define(["sitecore", "jquery", "underscore", "entityService", ], function (Siteco
                 vars[hash[0]] = hash[1];
             }
             return vars;
-        }
+        },
 
+        UpdateItem: function ()
+        {
+            var itemService = new entityService({
+                url: "/sitecore/api/ssc/DevToolKit-Controllers/SitecoreItem"
+            });
 
+            var querystring = this.GetQueryString();
+            var itemid = querystring["itemid"];
+
+            var message = this.messagePanel;
+
+            var result = itemService.fetchEntity(itemid).execute().then(function (item) {
+                item.save().then(function (savedItem) {
+                    message.addMessage("notification", { text: "Item updated successfully", actions: [], closable: true, temporary: true });
+                });
+            });
+            }
+        
     });
 
     return StandardValuesTool;
