@@ -8,12 +8,25 @@ define(["sitecore", "jquery", "underscore", "entityService"], function (Sitecore
     var StandardValuesTool = Sitecore.Definitions.App.extend({
 
         initialized: function () {
-         
+            this.GetFields();
         },
 
         initialize: function () {
-         
+
         },
+
+        GetFields: function () {
+            var datasource = this.DataSource;
+
+            var fieldService = new entityService({
+                url: "/sitecore/api/ssc/DevToolKit-Controller/SitecoreField"
+            });
+
+            var result = fieldService.fetchEntities().execute().then(function (fields) {
+                datasource.viewModel.items(field);
+            });
+
+        }
 
 
     });
