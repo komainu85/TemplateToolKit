@@ -40,14 +40,14 @@ namespace DevToolKit.Repositories
                 itemId = "233",
                 Id = "233",
                 Fields = fields
-            }
+            };
 
             return sItem;
         }
 
         public IQueryable<SitecoreItem> GetAll()
         {
-
+            throw new NotImplementedException();
         }
 
         public void Update(SitecoreItem entity)
