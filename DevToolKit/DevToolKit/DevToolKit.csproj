@@ -106,6 +106,9 @@
   <ItemGroup>
     <Compile Include="Controllers\SitecoreItemController.cs" />
     <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="EntityMapping\SitecoreFieldMapper.cs" />
+    <Compile Include="EntityMapping\SitecoreItemMapper.cs" />
+    <Compile Include="Interfaces\IDataAccess.cs" />
     <Compile Include="Models\SitecoreField.cs">
       <SubType>Code</SubType>
     </Compile>

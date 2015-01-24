@@ -3,12 +3,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DevToolKit.EntityMapping;
+using DevToolKit.Interfaces;
+using Sitecore.Data.Items;
 using Sitecore.Diagnostics;
 
 namespace DevToolKit.Repositories
 {
     public class SitecoreItemRepository : Sitecore.Services.Core.IRepository<SitecoreItem>
     {
+        private  IDataAccess _dataAccess = new DataAccess.DataAccess();
+
         public void Add(SitecoreItem entity)
         {
             throw new NotImplementedException();
@@ -28,12 +33,10 @@ namespace DevToolKit.Repositories
         {
             Assert.IsNotNullOrEmpty(id, "id is required");
 
-
             var fields = new List<SitecoreField>();
 
             fields.Add(new SitecoreField() { Name = "Assert", StandardValue = "Hello", Value = "Disc", TemplateName = "Page base", TemplatePath = "/sitecore/templates/user defined/asserts/Page base" }); ;
             fields.Add(new SitecoreField() { Name = "IsNull", StandardValue = "World", Value = "World", TemplateName = "Standard template", TemplatePath = "/sitecore/templates/user defined/asserts/Standard template" });
-
 
             var sItem = new SitecoreItem()
             {
@@ -42,7 +45,12 @@ namespace DevToolKit.Repositories
                 Fields = fields
             };
 
-           sItem = new SitecoreItem(Sitecore.Context.Database.GetItem(id));
+            Item item = _dataAccess.GetItem(id);
+            if (item == null) return new SitecoreItem();
+
+            var tItem = SitecoreItemMapper.MapToEntity(item);
+
+            sItem = tItem;
 
             return sItem;
         }
@@ -54,7 +62,10 @@ namespace DevToolKit.Repositories
 
         public void Update(SitecoreItem entity)
         {
-            throw new NotImplementedException();
+            Assert.IsNotNull(entity, "Entity can not be null");
+            Assert.IsNotNullOrEmpty(entity.Id, "Id can not be null");
+
+            _dataAccess.UpdateItem(entity);
         }
     }
 }
