@@ -23,7 +23,7 @@ define(["sitecore", "jquery", "underscore", "entityService"], function (Sitecore
             });
 
             var result = fieldService.fetchEntities().execute().then(function (fields) {
-                datasource.viewModel.items(field);
+                datasource.viewModel.items(fields);
             });
 
         }

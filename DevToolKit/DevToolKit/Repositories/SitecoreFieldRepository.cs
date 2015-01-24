@@ -37,8 +37,8 @@ namespace DevToolKit.Repositories
         {
             var items = new List<SitecoreField>();
 
-            items.Add(new SitecoreField() {Id= "dgsds",itemId="fdfgfdg", Name="sdfdsfsdf", StandardValue="dsfdf", Value="dsfdsf"  });
-            items.Add(new SitecoreField() { Id = "dgsfffds", itemId = "fsdfdsdfgfdg", Name = "sdfdssdfsdf", StandardValue = "dsdfdfdf", Value = "dsfdsddf" });
+            items.Add(new SitecoreField() {Id= "100", itemId="100", Name="Assert", StandardValue="Hello", Value="Disc", TemplateName  = "Page base", TemplatePath = "/sitecore/templates/user defined/asserts/Page base"});;
+            items.Add(new SitecoreField() { Id = "200", itemId = "200", Name = "IsNull", StandardValue = "World", Value = "World", TemplateName  = "Standard template", TemplatePath = "/sitecore/templates/user defined/asserts/Standard template" });
 
             return items.AsQueryable();
         }
