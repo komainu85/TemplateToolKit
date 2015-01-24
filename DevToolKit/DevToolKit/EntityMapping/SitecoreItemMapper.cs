@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DevToolKit.Interfaces;
 using DevToolKit.Models;
 using Sitecore.Data.Fields;
 using Sitecore.Data.Items;
@@ -9,32 +10,26 @@ using Sitecore.Diagnostics;
 
 namespace DevToolKit.EntityMapping
 {
-    public class SitecoreItemMapper
+    public class SitecoreItemMapper : ISitecoreItemMapper
     {
-        public SitecoreItem MapToEntity(Item item)
+        private ISitecoreFieldMapper _sitecoreFieldMapper = new SitecoreFieldMapper();
+
+        public SitecoreItem MapToEntity(Item item, bool includeStandardFields = false)
         {
             Assert.IsNotNull(item, "item can not be null");
-
-            var sitecoreFieldMapper = new SitecoreFieldMapper();
 
             var entity = new SitecoreItem
             {
                 Id = item.ID.ToString(),
                 itemId = item.ID.ToString(),
                 Name = item.DisplayName,
-                Fields = item.Fields.Select(sitecoreFieldMapper.MapToEntity).ToList(),
+                Fields = item.Fields.Select(_sitecoreFieldMapper.MapToEntity).ToList(),
             };
 
-            var fieldsToKeep = new List<SitecoreField>();
-            foreach (var field in entity.Fields)
+            if (includeStandardFields)
             {
-                if (!field.StandardField)
-                {
-                    fieldsToKeep.Add(field);
-                }
+                entity.Fields.RemoveAll(x => x.StandardField);
             }
-
-            entity.Fields = fieldsToKeep;
 
             return entity;
         }

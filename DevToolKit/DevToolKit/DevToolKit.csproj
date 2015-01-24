@@ -110,6 +110,8 @@
     <Compile Include="EntityMapping\SitecoreFieldMapper.cs" />
     <Compile Include="EntityMapping\SitecoreItemMapper.cs" />
     <Compile Include="Interfaces\IDataAccess.cs" />
+    <Compile Include="Interfaces\ISitecoreFieldMapper.cs" />
+    <Compile Include="Interfaces\ISitecoreItemMapper.cs" />
     <Compile Include="Models\SitecoreField.cs">
       <SubType>Code</SubType>
     </Compile>
