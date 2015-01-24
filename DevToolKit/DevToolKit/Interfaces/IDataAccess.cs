@@ -11,6 +11,5 @@ namespace DevToolKit.Interfaces
     {
         Item GetItem(string id);
         bool UpdateItem(SitecoreItem sItem);
-        bool UpdateReferers(SitecoreItem entity);
     }
 }

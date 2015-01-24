@@ -8,6 +8,9 @@ using Sitecore.Data.Items;
 using Sitecore.Data.Managers;
 using Sitecore.Diagnostics;
 using Sitecore.Links;
+using Sitecore.ContentSearch;
+using Sitecore.ContentSearch.SearchTypes;
+using Sitecore.ContentSearch.Linq;
 
 namespace DevToolKit.DataAccess
 {
@@ -55,11 +58,11 @@ namespace DevToolKit.DataAccess
 
             bool success = false;
 
-            bool isTemplate = TemplateManager.IsTemplate(item);
+            bool isStandardValue = item.Name == "__Standard Values";
 
-            if (isTemplate)
+            if (isStandardValue)
             {
-                success = UpdateReferers(sItem);
+                success = UpdateReferers(item, sItem);
             }
             else
             {
@@ -69,25 +72,17 @@ namespace DevToolKit.DataAccess
             return success;
         }
 
-        public bool UpdateReferers(SitecoreItem sItem)
-        {
-            Assert.IsNotNull(sItem, "SitecoteItem can not be null");
-
-            Item item = GetItem(sItem.Id);
-            Assert.IsNotNull(item, "Item can not be null");
-
-            return UpdateReferers(item, sItem);
-        }
-
-        private bool UpdateReferers(Item item, SitecoreItem sItem)
+        private bool UpdateReferers(Item standardValue, SitecoreItem sItem)
         {
             bool success = false;
 
-            var refererItems = new List<Item>();
+            var template = standardValue.Parent;
 
-            foreach (var i in refererItems)
+            var refererItems = GetItemsFromTemplate(template);
+
+            foreach (var item in refererItems)
             {
-                success = ComputeUpdate(i, sItem);
+                success = ComputeUpdate(item, sItem);
             }
 
             return success;
@@ -139,6 +134,27 @@ namespace DevToolKit.DataAccess
             }
 
             return success;
+        }
+
+
+        private List<Item> GetItemsFromTemplate(Item template)
+        {
+            var items = new List<Item>();
+
+            var index = ContentSearchManager.GetIndex("sitecore_master_index");
+
+            using (var context = index.CreateSearchContext())
+            {
+                var searchItems = context.GetQueryable<SearchResultItem>();
+                var results = searchItems.Where(item => item.TemplateId == template.ID && item.Name != "__Standard Values").ToList();
+
+                if (results.Any())
+                {
+                    items = results.Select(x => x.GetItem()).ToList();
+                }
+            }
+
+            return items;
         }
     }
 }
