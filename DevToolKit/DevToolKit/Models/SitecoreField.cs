@@ -19,5 +19,7 @@ namespace DevToolKit.Models
         public string TemplateId{ get; set; }
         public bool StandardField { get; set; }
         public bool RevertToStandardValue { get; set; }
+        public int SortOrder { get; set; }
+        public int SectionSortOrder { get; set; }
     }
 }
