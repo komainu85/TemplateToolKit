@@ -14,10 +14,5 @@ namespace DevToolKit.Models
         public string itemId { get; set; }
         public string Name { get; set; }
         public List<SitecoreField> Fields { get; set; }
-
-        public SitecoreItem()
-        {
-            
-        }
     }
 }

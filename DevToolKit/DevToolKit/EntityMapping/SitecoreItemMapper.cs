@@ -11,15 +11,18 @@ namespace DevToolKit.EntityMapping
 {
     public class SitecoreItemMapper
     {
-        public static SitecoreItem MapToEntity(Item item)
+        public SitecoreItem MapToEntity(Item item)
         {
             Assert.IsNotNull(item, "item can not be null");
 
+            var sitecoreFieldMapper = new SitecoreFieldMapper();
+
             var entity = new SitecoreItem
             {
+                Id = item.ID.ToString(),
                 itemId = item.ID.ToString(),
                 Name = item.DisplayName,
-                Fields = item.Fields.Select(SitecoreFieldMapper.MapToEntity).ToList(),
+                Fields = item.Fields.Select(sitecoreFieldMapper.MapToEntity).ToList(),
             };
 
             var fieldsToKeep = new List<SitecoreField>();

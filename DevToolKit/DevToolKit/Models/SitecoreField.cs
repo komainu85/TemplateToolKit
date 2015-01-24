@@ -19,10 +19,5 @@ namespace DevToolKit.Models
         public string TemplatePath { get; set; }
         public bool StandardField { get; set; }
         public bool RevertToStandardValue { get; set; }
-
-        public SitecoreField()
-        {
-            
-        }
     }
 }
