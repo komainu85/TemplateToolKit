@@ -25,5 +25,10 @@ namespace DevToolKit.Models
                 where f != null
                 select new SitecoreField(f)).ToList();
         }
+
+        public SitecoreItem()
+        {
+            
+        }
     }
 }

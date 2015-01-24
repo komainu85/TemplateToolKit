@@ -25,5 +25,10 @@ namespace DevToolKit.Models
             TemplateName = field.GetTemplateField().Template.Name;
             TemplatePath = field.GetTemplateField().Template.FullName;
         }
+
+        public SitecoreField()
+        {
+            
+        }
     }
 }
