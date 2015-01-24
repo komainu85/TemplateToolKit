@@ -30,7 +30,7 @@ namespace DevToolKit.EntityMapping
                 Value = field.Value,
                 StandardValue = field.GetStandardValue(),
                 TemplateName = field.GetTemplateField().Template.Name,
-                TemplatePath = field.GetTemplateField().Template.FullName,
+                TemplateId = field.GetTemplateField().Template.ID.ToString(),
                 StandardField = template.ContainsField(field.ID),
             };
 

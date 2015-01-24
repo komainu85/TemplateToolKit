@@ -1,20 +1,21 @@
-﻿<div >
-    <label data-bind="attr: { 'for': Name }" >Reset</label>
-    <input type="checkbox" data-bind="value: Name, attr: { name: Name }" />  
-
+﻿<div>
+    <label data-bind="attr: { 'for': Name }">Reset</label>
+    <input type="checkbox" data-bind="value: Name, attr: { name: Name }" />
     <div class="sc-tile-default-property">
-        <span class="sc-tile-property-title">Name: </span><span class="sc-tile-property-value" data-bind="text: Name"></span>
+        <strong class="sc-tile-property-title">Name: </strong>
+        <span class="sc-tile-property-value" data-bind="text: Name"></span>
     </div>
     <div class="sc-tile-default-property">
-        <span class="sc-tile-property-title">Value: </span><span class="sc-tile-property-value" data-bind="text: Value"></span>
+        <strong class="sc-tile-property-title">Template Name: </strong>
+        <span class="sc-tile-property-value" data-bind="text: TemplateName"></span> -
+        <em class="sc-tile-property-value" data-bind="text: TemplateId"></em>
     </div>
     <div class="sc-tile-default-property">
-        <span class="sc-tile-property-title">StandardValue: </span><span class="sc-tile-property-value" data-bind="text: StandardValue"></span>
+        <strong class="sc-tile-property-title">Value: </strong>
+        <p class="sc-tile-property-value" data-bind="text: Value"></p>
     </div>
     <div class="sc-tile-default-property">
-        <span class="sc-tile-property-title">Template Name: </span><span class="sc-tile-property-value" data-bind="text: TemplateName"></span>
-    </div>
-    <div class="sc-tile-default-property">
-        <span class="sc-tile-property-title">Template Path: </span><span class="sc-tile-property-value" data-bind="text: TemplatePath"></span>
+        <strong class="sc-tile-property-title">Standard Value: </strong>
+        <p class="sc-tile-property-value" data-bind="text: StandardValue"></p>
     </div>
 </div>

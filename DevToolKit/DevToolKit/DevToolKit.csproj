@@ -121,6 +121,7 @@
     <None Include="App_Config\StandardValuesCommands.config">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Css\Tile.css" />
     <Content Include="StandardValuesTool.js" />
   </ItemGroup>
   <ItemGroup>

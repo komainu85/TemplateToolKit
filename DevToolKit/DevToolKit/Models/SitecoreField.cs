@@ -16,7 +16,7 @@ namespace DevToolKit.Models
         public string Value { get; set; }
         public string StandardValue { get; set; }
         public string TemplateName { get; set; }
-        public string TemplatePath { get; set; }
+        public string TemplateId{ get; set; }
         public bool StandardField { get; set; }
         public bool RevertToStandardValue { get; set; }
     }
