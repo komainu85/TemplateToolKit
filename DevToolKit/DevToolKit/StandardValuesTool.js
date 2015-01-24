@@ -70,12 +70,12 @@ define(["sitecore", "jquery", "underscore", "entityService", ], function (Siteco
         },
 
         GetItemsToReset: function () {
-            var checkedValues = $('input:checkbox:checked').map(function () {
-                return this.value;
+            var checkedValues = $("input[value='Reset Field']").map(function () {
+                return this.name;
             }).get();
 
             return checkedValues;
-        }
+        },
 
     });
 
