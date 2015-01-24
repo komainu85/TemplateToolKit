@@ -35,7 +35,12 @@ namespace DevToolKit.Repositories
 
         public IQueryable<SitecoreField> GetAll()
         {
-            throw new NotImplementedException();
+            var items = new List<SitecoreField>();
+
+            items.Add(new SitecoreField() {Id= "dgsds",itemId="fdfgfdg", Name="sdfdsfsdf", StandardValue="dsfdf", Value="dsfdsf"  });
+            items.Add(new SitecoreField() { Id = "dgsfffds", itemId = "fsdfdsdfgfdg", Name = "sdfdssdfsdf", StandardValue = "dsdfdfdf", Value = "dsfdsddf" });
+
+            return items.AsQueryable<SitecoreField>;
         }
 
         public void Update(SitecoreField entity)
