@@ -12,9 +12,9 @@ namespace DevToolKit.Controllers
 {
     [ValidateAntiForgeryToken]
     [ServicesController]
-    public class SitecoreItemController : EntityService<SitecoreItem>
+    public class SitecoreItemController : EntityService<ItemModel>
     {
-        public SitecoreItemController(IRepository<SitecoreItem> repository)
+        public SitecoreItemController(IRepository<ItemModel> repository)
             : base(repository)
         {
         }

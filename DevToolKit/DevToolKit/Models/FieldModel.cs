@@ -9,7 +9,7 @@ using Sitecore.Diagnostics;
 
 namespace DevToolKit.Models
 {
-    public class SitecoreField
+    public class FieldModel
     {
         public string Id { get; set; }
         public string Name { get; set; }

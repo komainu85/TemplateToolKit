@@ -10,6 +10,6 @@ namespace DevToolKit.Interfaces
 {
     public interface ISitecoreItemMapper
     {
-        SitecoreItem MapToEntity(Item item, bool includeStandardFields = false);
+        ItemModel MapToEntity(Item item, bool includeStandardFields = false);
     }
 }

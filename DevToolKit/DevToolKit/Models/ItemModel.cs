@@ -9,10 +9,10 @@ using Sitecore.Diagnostics;
 
 namespace DevToolKit.Models
 {
-    public class SitecoreItem : Sitecore.Services.Core.Model.EntityIdentity
+    public class ItemModel : Sitecore.Services.Core.Model.EntityIdentity
     {
         public string itemId { get; set; }
         public string Name { get; set; }
-        public List<SitecoreField> Fields { get; set; }
+        public List<FieldModel> Fields { get; set; }
     }
 }

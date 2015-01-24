@@ -49,11 +49,11 @@ namespace DevToolKit.DataAccess
             return item;
         }
 
-        public bool UpdateItem(SitecoreItem sItem)
+        public bool UpdateItem(ItemModel itemModel)
         {
-            Assert.IsNotNull(sItem, "SitecoteItem can not be null");
+            Assert.IsNotNull(itemModel, "SitecoteItem can not be null");
 
-            Item item = GetItem(sItem.Id);
+            Item item = GetItem(itemModel.Id);
             Assert.IsNotNull(item, "Item can not be null");
 
             bool success = false;
@@ -62,17 +62,17 @@ namespace DevToolKit.DataAccess
 
             if (isStandardValue)
             {
-                success = UpdateReferers(item, sItem);
+                success = UpdateReferers(item, itemModel);
             }
             else
             {
-                success = ComputeUpdate(item, sItem);
+                success = ComputeUpdate(item, itemModel);
             }
 
             return success;
         }
 
-        private bool UpdateReferers(Item standardValue, SitecoreItem sItem)
+        private bool UpdateReferers(Item standardValue, ItemModel itemModel)
         {
             bool success = false;
 
@@ -82,17 +82,17 @@ namespace DevToolKit.DataAccess
 
             foreach (var item in refererItems)
             {
-                success = ComputeUpdate(item, sItem);
+                success = ComputeUpdate(item, itemModel);
             }
 
             return success;
         }
 
-        private bool ComputeUpdate(Item item, SitecoreItem sItem)
+        private bool ComputeUpdate(Item item, ItemModel itemModel)
         {
             bool success = false;
 
-            var fieldsToRevert = sItem.Fields.Where(x => x.RevertToStandardValue);
+            var fieldsToRevert = itemModel.Fields.Where(x => x.RevertToStandardValue);
 
             using (new Sitecore.SecurityModel.SecurityDisabler())
             {

@@ -10,6 +10,6 @@ namespace DevToolKit.Interfaces
     public interface IDataAccess
     {
         Item GetItem(string id);
-        bool UpdateItem(SitecoreItem sItem);
+        bool UpdateItem(ItemModel itemModel);
     }
 }

@@ -14,7 +14,7 @@ namespace DevToolKit.EntityMapping
 {
     public class SitecoreFieldMapper : ISitecoreFieldMapper
     {
-        public SitecoreField MapToEntity(Field field)
+        public FieldModel MapToEntity(Field field)
         {
             Assert.IsNotNull(field, "field can not be null");
 
@@ -25,7 +25,7 @@ namespace DevToolKit.EntityMapping
 
             var template = field.GetTemplateField().Template;
 
-            var entity = new SitecoreField
+            var entity = new FieldModel
             {
                 Id = field.ID.ToString(),
                 Name = field.Name,

@@ -14,13 +14,13 @@ namespace DevToolKit.EntityMapping
     {
         private ISitecoreFieldMapper _sitecoreFieldMapper = new SitecoreFieldMapper();
 
-        public SitecoreItem MapToEntity(Item item, bool includeStandardFields = false)
+        public ItemModel MapToEntity(Item item, bool includeStandardFields = false)
         {
             Assert.IsNotNull(item, "item can not be null");
 
             item.Fields.ReadAll();
 
-            var entity = new SitecoreItem
+            var entity = new ItemModel
             {
                 Id = item.ID.ToString(),
                 itemId = item.ID.ToString(),

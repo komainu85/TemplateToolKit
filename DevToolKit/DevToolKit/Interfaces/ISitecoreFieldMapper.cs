@@ -10,6 +10,6 @@ namespace DevToolKit.Interfaces
 {
     public interface ISitecoreFieldMapper
     {
-        SitecoreField MapToEntity(Field field);
+        FieldModel MapToEntity(Field field);
     }
 }
