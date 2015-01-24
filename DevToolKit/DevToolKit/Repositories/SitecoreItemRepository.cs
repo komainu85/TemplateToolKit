@@ -13,7 +13,7 @@ namespace DevToolKit.Repositories
 {
     public class SitecoreItemRepository : Sitecore.Services.Core.IRepository<SitecoreItem>
     {
-        private  IDataAccess _dataAccess = new DataAccess.DataAccess();
+        private IDataAccess _dataAccess = new DataAccess.DataAccess();
 
         public void Add(SitecoreItem entity)
         {
@@ -36,24 +36,11 @@ namespace DevToolKit.Repositories
         {
             Assert.IsNotNullOrEmpty(id, "id is required");
 
-            var fields = new List<SitecoreField>();
-
-            fields.Add(new SitecoreField() { Name = "Assert", StandardValue = "Hello", Value = "Disc", TemplateName = "Page base", TemplatePath = "/sitecore/templates/user defined/asserts/Page base" }); ;
-            fields.Add(new SitecoreField() { Name = "IsNull", StandardValue = "World", Value = "World", TemplateName = "Standard template", TemplatePath = "/sitecore/templates/user defined/asserts/Standard template" });
-
-            var sItem = new SitecoreItem()
-            {
-                itemId = "233",
-                Id = "233",
-                Fields = fields
-            };
-
             Item item = _dataAccess.GetItem(id);
             if (item == null) return new SitecoreItem();
 
-            var tItem = SitecoreItemMapper.MapToEntity(item);
-
-            sItem = tItem;
+            var sitecoreItemMaper = new SitecoreItemMapper();
+            var sItem = sitecoreItemMaper.MapToEntity(item);
 
             return sItem;
         }

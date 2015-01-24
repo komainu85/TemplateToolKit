@@ -13,7 +13,7 @@ namespace DevToolKit.EntityMapping
 {
     public class SitecoreFieldMapper
     {
-        public static SitecoreField MapToEntity(Field field)
+        public SitecoreField MapToEntity(Field field)
         {
             Assert.IsNotNull(field, "field can not be null");
 

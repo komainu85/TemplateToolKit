@@ -104,6 +104,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CMS\Commands.cs" />
     <Compile Include="Controllers\SitecoreItemController.cs" />
     <Compile Include="DataAccess\DataAccess.cs" />
     <Compile Include="EntityMapping\SitecoreFieldMapper.cs" />
@@ -117,6 +118,9 @@
     <Compile Include="Repositories\SitecoreItemRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App_Config\StandardValuesCommands.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="StandardValuesTool.js" />
   </ItemGroup>
   <ItemGroup>
