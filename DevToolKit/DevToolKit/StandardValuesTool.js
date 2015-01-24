@@ -22,7 +22,7 @@ define(["sitecore", "jquery", "underscore", "entityService", ], function (Siteco
             var itemid = querystring["itemid"];
 
             var fieldService = new entityService({
-                url: "/sitecore/api/ssc/DevToolKit-Controllers/ItemModel"
+                url: "/sitecore/api/ssc/DevToolKit-Controllers/SitecoreItem"
             });
 
             var result = fieldService.fetchEntity(itemid).execute().then(function (item) {
@@ -44,7 +44,7 @@ define(["sitecore", "jquery", "underscore", "entityService", ], function (Siteco
 
         UpdateItem: function () {
             var itemService = new entityService({
-                url: "/sitecore/api/ssc/DevToolKit-Controllers/ItemModel"
+                url: "/sitecore/api/ssc/DevToolKit-Controllers/SitecoreItem"
             });
 
             var querystring = this.GetQueryString();
