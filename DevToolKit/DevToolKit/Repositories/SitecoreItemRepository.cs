@@ -42,6 +42,8 @@ namespace DevToolKit.Repositories
                 Fields = fields
             };
 
+            sItem = new SitecoreItem(Sitecore.Context.Database.GetItem(id));
+
             return sItem;
         }
 
