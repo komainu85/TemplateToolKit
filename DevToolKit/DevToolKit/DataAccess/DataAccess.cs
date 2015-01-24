@@ -136,7 +136,6 @@ namespace DevToolKit.DataAccess
             return success;
         }
 
-
         private List<Item> GetItemsFromTemplate(Item template)
         {
             var items = new List<Item>();
