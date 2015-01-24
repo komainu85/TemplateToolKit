@@ -11,17 +11,20 @@ namespace DevToolKit
     {
         public Item GetItem(string id)
         {
+            Item item = null;
+
             ID sId = ID.Null;
 
-            if (ID.TryParse(id, out Sid))
+            if (ID.TryParse(id, out sId))
             {
-                var item = Sitecore.Data.Database.GetDatabase("database").GetItem(sId);
+                item = Sitecore.Data.Database.GetDatabase("database").GetItem(sId);
             }
             else
             {
                 throw new Exception();
             }
 
+            return item;
         }
     }
 }
