@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DevToolKit.Models
 {
-    public class SitecoreField
+    public class SitecoreField : Sitecore.Services.Core.Model.EntityIdentity
     {
         public string Name { get; set; }
         public string Value { get; set; }
