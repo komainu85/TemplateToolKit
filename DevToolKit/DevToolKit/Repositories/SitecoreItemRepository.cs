@@ -21,7 +21,7 @@ namespace DevToolKit.Repositories
 
         public bool Exists(SitecoreItem entity)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public SitecoreItem FindById(string id)
@@ -42,7 +42,7 @@ namespace DevToolKit.Repositories
                 Fields = fields
             };
 
-            sItem = new SitecoreItem(Sitecore.Context.Database.GetItem(id));
+           sItem = new SitecoreItem(Sitecore.Context.Database.GetItem(id));
 
             return sItem;
         }
