@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Sitecore.Diagnostics;
 
 namespace DevToolKit.Repositories
 {
@@ -25,6 +26,10 @@ namespace DevToolKit.Repositories
 
         public SitecoreField FindById(string id)
         {
+            Assert.IsNotNullOrEmpty(id, "id is required");
+
+            // required when getting field by ID
+
             throw new NotImplementedException();
         }
 
